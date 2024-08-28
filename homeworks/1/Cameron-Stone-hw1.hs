@@ -84,7 +84,11 @@ for a total of 10 times not including the initial call.
 
 -- Problem 3 (10 points)
 lucas :: Int -> Int
-lucas = undefined
+lucas 0 = 2
+lucas 1 = 1
+lucas n 
+  | n > 1 = lucas (n-1) + lucas (n-2)
+  | otherwise = error "no negative numbers"
 
 
 -- Problem 4 (10 points)
