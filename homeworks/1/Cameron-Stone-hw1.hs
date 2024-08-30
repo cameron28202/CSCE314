@@ -90,25 +90,54 @@ lucas n
   | n > 1 = lucas (n-1) + lucas (n-2)
   | otherwise = error "no negative numbers"
 
+{-
+The lucas function computes the n-th Lucas number. Lucas numbers are similar 
+to Fibonacci numbers, but start with 2 and 1 instead of 0 and 1. 
+
+The function has two base cases:
+1. When n is 0, it returns 2
+2. When n is 1, it returns 1
+
+For n > 1, the function recursively computes the n-th Lucas number by summing 
+the (n-1)th and (n-2)th Lucas numbers: lucas(n) = lucas(n-1) + lucas(n-2).
+-}
 
 -- Problem 4 (10 points)
 factorial :: Int -> Int
-factorial = undefined
+factorial 0 = 1
+factorial n = n * factorial (n-1)
 
 
 -- Problem 5 (5+10+10=25 points)
 ---- Question 5.1 (5 points)
+
 semifactorial :: Int -> Int
-semifactorial = undefined
+semifactorial n
+  | n < 0     = error "enter a positive number"
+  | n == 0    = 1
+  | n == 1    = 1
+  | otherwise = n * semifactorial (n-2)
 
 ---- Question 5.2 (10 points)
-{- Write your answer for Question 5.2 within this block comment.
+{-
+semifactorial 14 would invoke the following recursive calls:
 
+1. 14 * semifactorial 12
+2. 12 * semifactorial 10
+3. 10 * semifactorial 8
+4. 8 * semifactorial 6
+5. 6 * semifactorial 4
+6. 4 * semifactorial 2
+7. 2 * semifactorial 0
+
+It would make a total of 7 recursive calls without counting the first 
+invocation of semifactorial 14, and return 14*12*10*8*6*4*2*1 = 645120.
 -}
 
 ---- Question 5.3 (10 points)
 myfactorial :: Int -> Int
-myfactorial = undefined
+myfactorial 0 = 1
+myfactorial n 
 
 
 
@@ -125,9 +154,6 @@ polynaive = undefined
 {- Write your answer for Question 6.3 within this block comment.
 
 -}
-
-
-
 myTestList = 
   TestList [
 
@@ -172,4 +198,3 @@ codeGet errs fails
  | fails > 0       = ExitFailure 2
  | errs > 0        = ExitFailure 1
  | otherwise       = ExitSuccess
-
