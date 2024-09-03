@@ -137,21 +137,58 @@ invocation of semifactorial 14, and return 14*12*10*8*6*4*2*1 = 645120.
 ---- Question 5.3 (10 points)
 myfactorial :: Int -> Int
 myfactorial 0 = 1
-myfactorial n 
+myfactorial n = semifactorial n * semifactorial (n-1)
 
 
 
 -- Problem 6 (10+15+10=35 points)
 ---- Question 6.1 (10 points)
 term :: Num a => Int -> a -> a
-term = undefined
+term n x
+  | n == 1    = x
+  | n == 0    = 1
+  | otherwise = x * term (n-1) x
+
+{-
+Line 1: The term function has a type signature of Num a => Int -> a -> a
+meaning that the type a is of the subclass Num,
+the first input is an integer, the second input is of type a, 
+and the function returns a value of type a.
+
+Line 2: term takes two inputs, n (power) and x (base number)
+
+Line 3: when n is 1, return x
+
+line 4: when n is 0, return 1 because anything to the power of 0 is 1
+
+line 5: otherwise, multiply x with a recursive call of the term function with 
+inputs (n-1) and x.
+-}
 
 ---- Question 6.2 (15 points)
 polynaive :: Num a => [a] -> Int -> a -> a
-polynaive = undefined
+polynaive [] _ _ = 0
+polynaive (a:as) n x = a * term n x + polynaive as (n-1) x
+
 
 ---- Question 6.3 (10 points)
 {- Write your answer for Question 6.3 within this block comment.
+
+for the input [2, 4, -1, 1] 3 4:
+
+as (the list containing the coefficients) is [2, -4, -1, 1]
+n (the degree of the polynomial) is 3 
+x (the number we are plugging into the polynomial) is 4
+
+For every number a in the coefficient array, the function multiples a with x^n 
+(by using the term function) and recursively adds the rest of the polynomial.
+
+1. 2 * 4^3 + polynaive [-4, -1, 1] 2 4
+2. -4 * 4^2 + polynaive [-1, 1] 1 4
+3. -1 * 4^1 + polynaive [1] 0 4
+4. 1 * 4^0 + polynaive []
+
+2 * 4^3 + -4 * 4^2 + -1 * 4^1 + 1 * 4^0 = 61
 
 -}
 myTestList = 
