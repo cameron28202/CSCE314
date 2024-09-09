@@ -137,7 +137,7 @@ invocation of semifactorial 14, and return 14*12*10*8*6*4*2*1 = 645120.
 ---- Question 5.3 (10 points)
 myfactorial :: Int -> Int
 myfactorial 0 = 1
-myfactorial n 
+--myfactorial n 
 
 
 
