@@ -13,7 +13,7 @@
 
 module Main where
 
-import Test.HUnit 
+import Test.HUnit
 
 import System.Exit
 
@@ -46,32 +46,43 @@ type Set a = [a]
 
 -- Problem 2 (10 points)
 isElem :: Eq a => a -> [a] -> Bool
-isElem = undefined
+isElem a [] = False
+isElem a (x:xs)
+  | a == x    = True
+  | otherwise = isElem a xs
 
 
 -- Problem 3 (15 points)
 -- Using isElem (from Problem 2) in the definition is required
 toSet :: Eq a => [a] -> Set a
-toSet = undefined
+toSet [] = []
+toSet (x:xs)
+  | isElem x xs  = toSet xs
+  | otherwise    = x : toSet xs
 
 
 -- Problem 4 (15 points)
 -- Using isElem (from Problem 2) in the definition is required
 subset :: Eq a => Set a -> Set a -> Bool
-subset = undefined
+subset [] _ =  True
+subset (x:xs) ys
+  | isElem x ys = subset xs ys
+  | otherwise   = False
 
 
 -- Problem 5 (10 points)
 -- Using subset (from Problem 4) in the definition is required
 setEqual :: Eq a => Set a -> Set a -> Bool
-setEqual = undefined
+setEqual xs ys = subset xs ys && subset ys xs
 
 
 -- Problem 6 (20+10 = 30 points)
 powerset :: Set a -> Set (Set a)
 ---- Question 6.1  (20 points)
 ---- Using direct recursion and list comprehenson is required
-powerset = undefined
+powerset [] = [[]]
+powerset (x:xs) = sets ++ [x:subset | subset <- sets]
+  where sets = powerset xs
 
 ---- Question 6.2 (10 points)
 {- Write your answer for Question 6.2 within this block comment.
@@ -93,7 +104,7 @@ scalarproduct = undefined
 
 
 
-myTestList = 
+myTestList =
   TestList [
 
       "isElem 1" ~: (isElem 'h' "happy") ~=? True
@@ -113,7 +124,7 @@ myTestList =
     , "setEqual 2" ~: setEqual [1,2] [2,1] ~=? True
     , "setEqual 3" ~: setEqual [1,2,3] [1,2,3,4] ~=? False
     , "setEqual 4" ~: setEqual [2,3,1] [1,2,3] ~=? True
-    
+
     , "powerset 1" ~: length (powerset ([]::[Int])) ~=? 1
     , "powerset 2" ~: length (powerset [5]) ~=? 2
     , "powerset 3" ~: length (powerset [3,2,5,1,4]) ~=? 32
@@ -130,7 +141,7 @@ main = do c <- runTestTT myTestList
           let errs = errors c
               fails = failures c
           exitWith (codeGet errs fails)
-          
+
 codeGet errs fails
  | fails > 0       = ExitFailure 2
  | errs > 0        = ExitFailure 1
