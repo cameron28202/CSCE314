@@ -109,11 +109,26 @@ msortBy comp xs = mergeBy comp (msortBy comp left) (msortBy comp right)
 {- Write your answer for Question 4.3 within this block comment.
 -- Should be detailed step-by-step.
 
-msortBy (>) [7,5,1,4,2] 
-With both lists being populated, we start by building the recursive call stack. 
-The function will first call halve on xs, which returns ([7, 5], [1, 4, 2]), making left = [7, 5] and right
-= [1, 4, 2]. We then evaluate the recursive call  msortBy > [1, 4, 2], which calls halve on xs and returns 
-[1], [4, 2] making left = [1] and right = [4, 2]
+msortBy > [7, 5, 1, 4, 2] (initial call) will do the following:
+
+Split into left = [7, 5] right = [1, 4, 2]
+
+left = [7] right = [5]
+
+mergeBy > [7] [5] returns [7, 5]
+
+right = [1] left = [4, 2]
+
+right = [4] left = [2]
+
+mergeBy > [4] [2] returns [4, 2]
+
+mergeBy > [4, 2] [1] returns [4, 2, 1]
+
+mergeBy > [7, 5] [4, 2, 1] returns [7, 5, 4, 2, 1]
+
+
+
 
 -}
 
@@ -121,7 +136,10 @@ The function will first call halve on xs, which returns ([7, 5], [1, 4, 2]), mak
 -- Problem 5 (10+5+10=25 points)
 ---- Question 5.1 (10 points)
 myInsert :: Ord a => a -> [a] -> [a]
-myInsert = undefined
+myInsert x [] = [x]
+myInsert a (x:xs)
+  | a <= x    = a:x:xs
+  | otherwise = myInsert 
 
 ---- Question 5.2 (5 points)
 mySort :: Ord a => [a] -> [a]
