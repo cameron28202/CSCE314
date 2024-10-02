@@ -17,7 +17,6 @@ import Test.HUnit  -- if this line causes compile error, try the following
                    -- command at the terminal prompt > cabal v1-install HUnit
 import System.Exit
 
-
 -- Example:
 -- Write a recursive function mySum that sums all the numbers
 -- in a list without using the prelude function sum.
@@ -118,6 +117,13 @@ semifactorial n
   | n == 1    = 1
   | otherwise = n * semifactorial (n-2)
 
+{- The semifactorial function has 3 base cases:
+  when n < 1, throw an error
+  when n == 0, return 1
+  when n == 1, return 1
+  in any other case, multiply n * a recursive call of the semifactorial function with n-2
+-}
+
 ---- Question 5.2 (10 points)
 {-
 semifactorial 14 would invoke the following recursive calls:
@@ -169,6 +175,18 @@ inputs (n-1) and x.
 polynaive :: Num a => [a] -> Int -> a -> a
 polynaive [] _ _ = 0
 polynaive (a:as) n x = a * term n x + polynaive as (n-1) x
+
+{-
+Line 1: The polynaive function has a type signature of Num a => [a] -> Int -> a -> a
+meaning that a is a subclass of type Num, the first input is an array of values with type a,
+the second input must be an integer, the third input is a value of type a, and 
+the function returns a value of type a.
+
+Line 2: base case. When an empty array is passed in, return 0.
+
+Line 3: Given a list of coefficients, recursively sum a * term n x + the rest of the polynomial 
+
+-}
 
 
 ---- Question 6.3 (10 points)
