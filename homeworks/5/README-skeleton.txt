@@ -4,12 +4,12 @@ Title: Homework 5 README
 ## First, write your name, UIN, and acknowledge any help received 
 ## in doing this assignment
 
-Student Name: 
-UIN:
-Acknowledgements: 
+Student Name: Cameron Stone
+UIN: 832007843
+Acknowledgements: N/a
 
-## Also, state which version of Java on which machine you used to  
-## compile and run your programs
+I used Java 21
+
 
 
 ----------

@@ -4,9 +4,9 @@
    Skeleton for Problems 2 & 3
    Written by Hyunyoung Lee for CSCE 314 Students
 
-   Student Name:
-   Student UIN:
-   Acknowledgements:
+   Student Name: Cameron Stone 
+   Student UIN: 832007843
+   Acknowledgements: N/a
 */
 
 import java.util.*; // for Collections.sort() and ArrayList
