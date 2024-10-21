@@ -1,0 +1,1 @@
+Fun n = if n (1) else (2) -- return 1 if n is true; return 2 if n is false
