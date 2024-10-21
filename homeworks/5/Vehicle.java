@@ -29,7 +29,7 @@ class Vehicle {
 
   private static int nextId = 1;
   public static final int TURN_LEFT = -90;
-  public static final int TURN_RIGHT = -90;
+  public static final int TURN_RIGHT = 90;
   
   // no args constructor. set currentspeed, currentdirection and ownername to default value,
   // and use the static nextId variable to generate a new id.
@@ -137,12 +137,12 @@ class Vehicle {
   public void turn(String direction){
     // if "LEFT" is passed in as the direction, we use the static final int TURN_LEFT previously
     // defined in the class, and call our previously defined turn method passing in this TURN_LEFT variable.
-    if(direction == "LEFT"){
+    if(direction.equals("LEFT")){
       turn(TURN_LEFT);
     }
 
     //same thing if "RIGHT" is passed in...
-    else if(direction == "RIGHT"){
+    else if(direction.equals("RIGHT")){
       turn(TURN_RIGHT);
     }
 
