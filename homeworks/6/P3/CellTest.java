@@ -4,15 +4,20 @@
    Assignment 6 Problem 3 Test class 
    class CellTest
 
-   Student Name: 
-   UIN:
-   Acknowledgements: 
+   Student Name: Cameron Stone
+   UIN: 832007843
+   Acknowledgements: N/a 
 */
+
 
 public class CellTest {
 
   // 15 points for the three methods: int_sum, num_sum, print
   // implement int_sum
+  public static int int_sum(Cell<Integer> current){
+    int sum = 0;
+    CellIterator<
+  }
 
   // implement num_sum
 
