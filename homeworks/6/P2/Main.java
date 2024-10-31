@@ -104,24 +104,30 @@ public class Main {
   }
 
   public static void main (String args[]) {
-				try {
-				if (args.length == 2 && args[0].equals("S")) {
-      //out.println(args[1]);
-      shapes = fileInputShapes( args[1] );
-						for (Shape e : shapes) { out.println(e); }
-				}
-				else System.err.println("Usage: "+
-																												"java Main S input_file_name\n");
+		try {
+			if (args.length == 2 && args[0].equals("S")) {
+        shapes = fileInputShapes( args[1] );
+        for (Shape e : shapes) { out.println(e); }
+          // here we use the Arrays.sort method. this will use the compareto method we overrid for the shapes.
+        Arrays.sort(shapes);
+
+        // now we loop through the shapes that we sorted and display nicely to the user in the console
+        out.println("Task 10 (shapes sorted by area):");
+        for(Shape s : shapes){
+          out.println(s + ", area: " + s.area());
+        }
+
+        // use the totalareacalculator class static method calculate to calculate the area of all of the shapes
+        double totalArea = TotalAreaCalculator.calculate(shapes);
+
+        // print to user
+        out.println("Total area of shapes in the array: " + totalArea);
+      }
+			else System.err.println("Usage: "+ "java Main S input_file_name\n");
+
+      
+
     }
     catch (IOException e) {}
-
-				
-  // Task 10.
-		// Sort the shapes according to their area and output them nicely in 
-  // an ascending order of area 
-
-  // output the total area of all the shapes
-
-  } // end of main()
-} // end of class Main
-
+  }
+}
