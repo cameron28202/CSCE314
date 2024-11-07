@@ -12,19 +12,50 @@
 
 public class CellTest {
 
-  // 15 points for the three methods: int_sum, num_sum, print
-  // implement int_sum
+  /*
+    the int_sum function takes in a Cell<Integer>. because the cell class implements iterable,
+    we have access to an iterator. we can either explicitly store this iterator in a variable with 
+    Iterator<Integer> iterator = current.iterator() and use a while loop, but a for each loop is
+    easier.
+  */
   public static int int_sum(Cell<Integer> current){
+    if (current == null) return 0;
+
     int sum = 0;
-    CellIterator<
+    for(Integer num : current){
+      sum += num;
+    }
+    return sum;
   }
 
-  // implement num_sum
+  /*
+    num_sum function takes a linked list full of values that have a superclass
+    of Number. we add each number's doubleValue to the sum, and return it
+  */
+  public static double num_sum(Cell<? extends Number> current){
+    if (current == null) return 0.0;
 
+    double sum = 0.0;
+    for(Number num : current){
+      sum += num.doubleValue();
+    }
+    return sum;
+  }
+
+  /*
+    print function takes a linkedlist of any type (use generic type parameter <T>),
+    loops through and prints each item.
+  */
   // implement print
+  public static <T> void print(Cell<T> current){
+    if (current == null) return;
+
+    for(T item : current){
+      System.out.println(item);
+    }
+  }
 
 	
-  // Feel free to "expand" the main method but do not delete whatever provided 
   public static void main (String args[]) {
     Cell<Integer> intlist = 
         new Cell<Integer>(1, 
